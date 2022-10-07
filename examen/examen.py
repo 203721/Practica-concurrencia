@@ -4,18 +4,18 @@ import time
 mutex = threading.Lock()
 
 
-def acciones(self):
+def acciones(persona):
     print(f"\nPersonas que esperan: {esperando}")
     time.sleep(2)
-    self.izquierda.tomar(self.id, "izquierda")
-    self.derecha.tomar(self.id, "derecha")
+    persona.izquierda.tomar(persona.id, "izquierda")
+    persona.derecha.tomar(persona.id, "derecha")
     time.sleep(2)
-    print(f"Persona {self.id} come...")
+    print(f"Persona {persona.id} come...")
     time.sleep(2)
-    self.derecha.dejar(self.id, "derecha")
-    self.izquierda.dejar(self.id, "izquierda")
+    persona.derecha.dejar(persona.id, "derecha")
+    persona.izquierda.dejar(persona.id, "izquierda")
     time.sleep(2)
-    esperando.remove(self.id)
+    esperando.remove(persona.id)
     if not esperando:
         print(
             f"\nPersonas que esperan: {esperando}\nTodas las personas han comido una vez.")

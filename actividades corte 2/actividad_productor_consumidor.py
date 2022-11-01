@@ -4,7 +4,7 @@ import random
 
 producer = random.randint(1, 10)
 consumer = random.randint(1, 10)
-limit = random.randint(1, 10)
+limit = 50
 storage = []
 
 

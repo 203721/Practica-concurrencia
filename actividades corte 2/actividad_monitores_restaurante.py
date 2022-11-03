@@ -1,5 +1,6 @@
 # Bryan Alexander Morales Roblero 203721
 # Enrique de Jesús Farrera Sánchez 203467
+# Francisco Omar Franco Espinosa 203403
 import threading
 import time
 import random
@@ -7,7 +8,7 @@ from queue import Queue
 
 # In case we want to use a random number of clients:
 # clients_number = random.randint(10, 30)
-clients_number = 22
+clients_number = 30
 capacity = 20
 waiter_number = chef_number = int(capacity * 0.1)
 reservation_number = int(capacity * 0.2)
@@ -87,7 +88,9 @@ class Monitor():
                 self.waiter_condition.wait()
             else:
                 client = self.restaurant_queue.get()
-                if client.served == False:
+                if client.served:
+                    self.waiter_condition.release()
+                else:
                     print(
                         f"MESERO {str(waiter.id)} está atendiendo a CLIENTE {str(client.id)}")
                     print(
@@ -99,8 +102,6 @@ class Monitor():
                     self.chef_condition.release()
 
                     client.served = True
-                    self.waiter_condition.release()
-                else:
                     self.waiter_condition.release()
 
     def _cooking(self, chef):

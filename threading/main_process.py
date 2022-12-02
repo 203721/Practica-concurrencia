@@ -54,6 +54,7 @@ if __name__ == "__main__":
     url = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0"
     th1 = threading.Thread(target=service_videos, args=[link])
     th1.start()
+    print(th1.is_alive())
     for x in range(0, 50):
         th2 = threading.Thread(target=get_service, args=[url])
         th2.start()

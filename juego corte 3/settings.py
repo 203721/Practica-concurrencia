@@ -1,8 +1,10 @@
 import math
+import ctypes
 
 # game settings
-RES = WIDTH, HEIGHT = 1366, 768
-# RES = WIDTH, HEIGHT = 1920, 1080
+user32 = ctypes.windll.user32
+user32.SetProcessDPIAware()
+RES = WIDTH, HEIGHT = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
 FPS = 60
